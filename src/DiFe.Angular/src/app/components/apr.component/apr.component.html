@@ -1,0 +1,30 @@
+<div class="animate__animated animate__fadeIn grid p-fluid">
+    <div class="col-12 md:col-4">
+        <label>APR</label>
+        <input [(ngModel)]="apr" (ngModelChange)="cal()" [ngModelOptions]="ngModelOptions" pInputText type="number">
+    </div>
+    <div class="col-12 md:col-4">
+        <label>Stake</label>
+        <input [(ngModel)]="stake" (ngModelChange)="cal()" [ngModelOptions]="ngModelOptions" pInputText type="number">
+    </div>
+    <div class="col-12 md:col-4">
+        <label>Lock</label>
+        <input [(ngModel)]="lock" (ngModelChange)="cal()" [ngModelOptions]="ngModelOptions" pInputText type="number">
+    </div>
+    <div class="col-12">
+        <label>Month</label>
+        <p-inputNumber class="p-inputtext-lg readonly" [disabled]="true" [maxFractionDigits]="2" [minFractionDigits]="2" mode="decimal" [(ngModel)]="month" [ngModelOptions]="ngModelOptions"></p-inputNumber>
+    </div>
+    <div class="col-12">
+        <label>Day</label>
+        <p-inputNumber class="p-inputtext-lg readonly" [disabled]="true" [maxFractionDigits]="2" [minFractionDigits]="2" mode="decimal" [(ngModel)]="day" [ngModelOptions]="ngModelOptions"></p-inputNumber>
+    </div>
+    <div class="col-12">
+        <label>Hour</label>
+        <p-inputNumber class="p-inputtext-lg readonly" [disabled]="true" [maxFractionDigits]="2" [minFractionDigits]="2" mode="decimal" [(ngModel)]="hour" [ngModelOptions]="ngModelOptions"></p-inputNumber>
+    </div>
+    <div class="col-12">
+        <label>Minute</label>
+        <p-inputNumber class="p-inputtext-lg readonly" [disabled]="true" [maxFractionDigits]="2" [minFractionDigits]="2" mode="decimal" [(ngModel)]="minute" [ngModelOptions]="ngModelOptions"></p-inputNumber>
+    </div>
+</div>
