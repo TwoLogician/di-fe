@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DiFe.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class WebsiteController : ControllerBase
     {
         private readonly AppDbContext _context;
