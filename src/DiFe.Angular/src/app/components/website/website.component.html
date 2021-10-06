@@ -1,0 +1,44 @@
+<p-blockUI [blocked]="processing">
+    <p-progressSpinner></p-progressSpinner>
+</p-blockUI>
+<p-contextMenu #cm [model]="items"></p-contextMenu>
+<p-table [(contextMenuSelection)]="selectedData" [contextMenu]="cm" responsiveLayout="stack" [rowHover]="true" [value]="websites">
+    <ng-template pTemplate="caption">
+        <div class="grid">
+            <div class="col">
+                <button class="p-button-sm" (click)="add()" label="Add" *ngIf="!websites.length" pButton></button>
+            </div>
+        </div>
+        <p-dialog header="Info" [maximizable]="true" [(visible)]="display">
+            <div class="animate__animated animate__fadeIn p-fluid">
+                <div class="p-field">
+                    <label>Name</label>
+                    <input [(ngModel)]="website.name" [ngModelOptions]="ngModelOptions" type="text" pInputText>
+                </div>
+                <div class="p-field">
+                    <label>URL</label>
+                    <input [(ngModel)]="website.url" [ngModelOptions]="ngModelOptions" type="text" pInputText>
+                </div>
+                <div class="p-field">
+                    <label>&nbsp;</label>
+                    <button (click)="save()" label="Save" pButton></button>
+                </div>
+            </div>
+        </p-dialog>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+        <tr class="animate__animated animate__fadeIn" [pContextMenuRow]="data">
+            <td>
+                <span class="p-column-title">Name</span>
+                <a [href]="data.url" target="_blank">
+                    <button class="p-button-link" [label]="data.name" pButton></button>
+                </a>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
-import { CoinInfo } from "./models"
+import { CoinInfo, WebsiteInfo } from "./models"
 
 declare let process: any
 
@@ -34,14 +34,28 @@ export class AppService {
         return this.http.get<CoinInfo[]>(this.getApi(`coin/wallet/${this.getWallAddress()}`)).toPromise()
     }
 
+    getWebsites() {
+        return this.http.get<WebsiteInfo[]>(this.getApi(`website/wallet/${this.getWallAddress()}`)).toPromise()
+    }
+
     postCoin(body: CoinInfo) {
         body.wallet = this.getWallAddress()
         return this.http.post<CoinInfo>(this.getApi("coin"), body).toPromise()
     }
 
+    postWebsite(body: WebsiteInfo) {
+        body.wallet = this.getWallAddress()
+        return this.http.post<WebsiteInfo>(this.getApi("website"), body).toPromise()
+    }
+
     putCoin(body: CoinInfo) {
         body.wallet = this.getWallAddress()
         return this.http.put<CoinInfo>(this.getApi(`coin/${body.id}`), body).toPromise()
+    }
+
+    putWebsite(body: WebsiteInfo) {
+        body.wallet = this.getWallAddress()
+        return this.http.put<WebsiteInfo>(this.getApi(`website/${body.id}`), body).toPromise()
     }
 
     putCoins(body: CoinInfo[]) {
@@ -58,5 +72,9 @@ export class AppService {
 
     deleteCoin(id: string) {
         return this.http.delete(this.getApi(`coin/${id}`)).toPromise()
+    }
+
+    deleteWebsite(id: string) {
+        return this.http.delete(this.getApi(`website/${id}`)).toPromise()
     }
 }
