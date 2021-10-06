@@ -21,7 +21,7 @@ namespace DiFe.Controllers
         {
             try
             {
-                var websites = await _context.Websites.Where(x => x.Wallet.ToUpper() == wallet.ToUpper()).ToListAsync();
+                var websites = await _context.Websites.Where(x => x.Wallet.ToUpper() == wallet.ToUpper()).OrderBy(x => x.Name).ToListAsync();
                 return websites;
             }
             catch (Exception ex)
