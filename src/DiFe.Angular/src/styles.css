@@ -25,6 +25,10 @@ body, html {
     width: 100%;
 }
 
+.p-blockui {
+    z-index: 1;
+}
+
 .p-button, .p-card, .p-inputgroup, .p-inputtext {
     border-radius: 0;
 }
