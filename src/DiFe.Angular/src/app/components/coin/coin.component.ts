@@ -102,6 +102,7 @@ export class CoinComponent extends BaseComponent implements OnInit {
         this.setProcessing(true)
         await Promise.all([this.initBnb(), this.initCoins()])
         this.initPrices()
+        this.setProcessing(false)
         await this.initBalances()
         await this.saveCoins()
         this.items = [
@@ -110,7 +111,6 @@ export class CoinComponent extends BaseComponent implements OnInit {
             { separator: true },
             { label: 'Delete', icon: 'pi pi-fw pi-trash', command: () => this.delete(this.selectedData) }
         ];
-        this.setProcessing(false)
     }
 
     async save() {
@@ -136,7 +136,9 @@ export class CoinComponent extends BaseComponent implements OnInit {
 
     async saveCoins() {
         try {
+            this.setProcessing(true)
             await this.service.putCoins(this.coins)
+            this.setProcessing(false)
         } catch (err) {
             this.error(err)
         }
