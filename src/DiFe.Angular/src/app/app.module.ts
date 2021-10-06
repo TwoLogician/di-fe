@@ -19,13 +19,14 @@ import { TabViewModule } from "primeng/tabview"
 import { AppRoutingModule } from "./app-routing.module"
 import { AppComponent } from "./app.component"
 import { AppService } from "./app.service"
-import { AprComponent, CoinComponent } from "./components"
+import { AprComponent, CoinComponent, WebsiteComponent } from "./components"
 
 @NgModule({
   declarations: [
     AppComponent,
     AprComponent,
     CoinComponent,
+    WebsiteComponent,
   ],
   imports: [
     AppRoutingModule,

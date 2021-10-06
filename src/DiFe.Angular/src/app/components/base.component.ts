@@ -1,6 +1,6 @@
 export class BaseComponent {
 
-    blocked = false
+    processing = false
     ngModelOptions = { standalone: true }
     walletAddress = this.getWalletAddress()
 
@@ -11,15 +11,15 @@ export class BaseComponent {
             alert(err.message)
         }
         console.error(err)
-        this.setBlocked(false)
+        this.setProcessing(false)
     }
 
     getWalletAddress() {
         return localStorage.getItem("wallet") || ""
     }
 
-    setBlocked(e: boolean) {
-        this.blocked = e
+    setProcessing(e: boolean) {
+        this.processing = e
     }
 
     setWalletAddress() {

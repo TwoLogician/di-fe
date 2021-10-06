@@ -34,10 +34,10 @@ export class CoinComponent extends BaseComponent implements OnInit {
             if (!confirm("Are you sure?")) {
                 return
             }
-            this.setBlocked(true)
+            this.setProcessing(true)
             await this.service.deleteCoin(e.id)
             this.coins = this.coins.filter(x => x.id != e.id)
-            this.setBlocked(false)
+            this.setProcessing(false)
         } catch (err) {
             this.error(err)
         }
@@ -99,7 +99,7 @@ export class CoinComponent extends BaseComponent implements OnInit {
     }
 
     async ngOnInit() {
-        this.setBlocked(true)
+        this.setProcessing(true)
         await Promise.all([this.initBnb(), this.initCoins()])
         this.initPrices()
         await this.initBalances()
@@ -110,12 +110,12 @@ export class CoinComponent extends BaseComponent implements OnInit {
             { separator: true },
             { label: 'Delete', icon: 'pi pi-fw pi-trash', command: () => this.delete(this.selectedData) }
         ];
-        this.setBlocked(false)
+        this.setProcessing(false)
     }
 
     async save() {
         try {
-            this.setBlocked(true)
+            this.setProcessing(true)
             let id = this.coin.id
             if (id) {
                 let rs = await this.service.putCoin(this.coin)
@@ -128,7 +128,7 @@ export class CoinComponent extends BaseComponent implements OnInit {
                 this.coins = [rs, ...this.coins]
             }
             this.display = false
-            this.setBlocked(false)
+            this.setProcessing(false)
         } catch (err) {
             this.error(err)
         }

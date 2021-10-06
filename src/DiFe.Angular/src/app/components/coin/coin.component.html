@@ -1,8 +1,8 @@
-<p-blockUI [blocked]="blocked">
+<p-blockUI [blocked]="true">
     <p-progressSpinner></p-progressSpinner>
 </p-blockUI>
 <p-contextMenu #cm [model]="items"></p-contextMenu>
-<p-table [(contextMenuSelection)]="selectedData" [contextMenu]="cm" responsiveLayout="stack" styleClass="p-datatable-striped" [value]="coins">
+<p-table [(contextMenuSelection)]="selectedData" [contextMenu]="cm" responsiveLayout="stack" [rowHover]="true" [value]="coins">
     <ng-template pTemplate="caption">
         <div class="grid">
             <div class="col-6">

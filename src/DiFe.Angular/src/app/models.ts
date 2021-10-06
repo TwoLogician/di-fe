@@ -20,3 +20,10 @@ export class CoinInfo {
     wallet = ""
     website = ""
 }
+
+export class WebsiteInfo {
+    id = ""
+    name = ""
+    url = ""
+    wallet = ""
+}

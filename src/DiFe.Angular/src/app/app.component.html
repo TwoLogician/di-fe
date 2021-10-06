@@ -31,6 +31,9 @@
         <p-tabPanel header="APR">
           <apr *ngIf="tab == 1"></apr>
         </p-tabPanel>
+        <p-tabPanel header="Website" *ngIf="isConnected">
+          <website *ngIf="tab == 2"></website>
+        </p-tabPanel>
       </p-tabView>
     </p-card>
   </div>
