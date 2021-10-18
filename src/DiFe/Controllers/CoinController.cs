@@ -87,7 +87,7 @@ namespace DiFe.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<List<CoinInfo>>> PutForLastPrice([FromBody] List<CoinInfo> value)
+        public async Task<ActionResult<List<CoinInfo>>> Put([FromBody] List<CoinInfo> value)
         {
             try
             {
@@ -100,6 +100,7 @@ namespace DiFe.Controllers
                     }
                     coin.LastPrice = x.Price;
                     coin.LastValue = x.Value;
+                    coin.Name = x.Name;
                 });
                 await _context.SaveChangesAsync();
                 return value;
