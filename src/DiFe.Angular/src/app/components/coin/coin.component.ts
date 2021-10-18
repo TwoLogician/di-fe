@@ -91,7 +91,7 @@ export class CoinComponent extends BaseComponent implements OnInit {
                 let rs = await this.service.pancake.getToken(x.address)
                 let data = rs.data
                 let price = Number.parseFloat(data.price)
-                x.name = `${data.name} (${data.symbol})`
+                x.name = data.symbol || x.name
                 x.price = price
                 x.priceString = this.toNumberString(price)
             } catch (err) {
