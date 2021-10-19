@@ -21,7 +21,8 @@ namespace DiFe.Models
         [NotMapped]
         public string DexGuruChart => $"https://dex.guru/token/{Address}";
         [NotMapped]
-        public string ImageUrl => $"https://assets.trustwalletapp.com/blockchains/smartchain/assets/{Address}/logo.png";
+        // public string ImageUrl => $"https://assets.trustwalletapp.com/blockchains/smartchain/assets/{Address}/logo.png";
+        public string ImageUrl => $"https://pancakeswap.finance/images/tokens/{Address}.svg";
         [NotMapped]
         public string PancakeSwap => $"https://pancakeswap.finance/swap?outputCurrency={Address}";
         [NotMapped]
