@@ -102,17 +102,17 @@ export class CoinComponent extends BaseComponent implements OnInit {
 
     async ngOnInit() {
         this.setProcessing(true)
-        await Promise.all([this.initBnb(), this.initCoins()])
-        this.initPrices()
-        this.setProcessing(false)
-        await this.initBalances()
-        await this.saveCoins()
         this.items = [
             { label: 'Add', icon: 'pi pi-fw pi-plus', command: () => this.add() },
             { label: 'Edit', icon: 'pi pi-fw pi-pencil', command: () => this.edit(this.selectedData) },
             { separator: true },
             { label: 'Delete', icon: 'pi pi-fw pi-trash', command: () => this.delete(this.selectedData) }
-        ];
+        ]
+        await Promise.all([this.initBnb(), this.initCoins()])
+        this.initPrices()
+        this.setProcessing(false)
+        await this.initBalances()
+        await this.saveCoins()
     }
 
     async save() {
