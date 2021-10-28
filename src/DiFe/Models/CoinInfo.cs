@@ -8,6 +8,7 @@ namespace DiFe.Models
         public string Address { get; set; } = string.Empty;
         public string Countdown { get; set; } = string.Empty;
         public string Id { get; set; } = Guid.NewGuid().ToString("N");
+        public bool IsFarming { get; set; }
         public decimal LastPrice { get; set; }
         public decimal LastValue { get; set; }
         public string Name { get; set; } = string.Empty;
