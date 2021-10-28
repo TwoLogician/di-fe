@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { BlockUIModule } from "primeng/blockui"
 import { ButtonModule } from "primeng/button"
 import { CardModule } from "primeng/card"
+import { CheckboxModule } from "primeng/checkbox"
 import { ContextMenuModule } from "primeng/contextmenu"
 import { DialogModule } from "primeng/dialog"
 import { DividerModule } from "primeng/divider"
@@ -15,6 +16,7 @@ import { ProgressSpinnerModule } from "primeng/progressspinner"
 import { RippleModule } from "primeng/ripple"
 import { TableModule } from "primeng/table"
 import { TabViewModule } from "primeng/tabview"
+import { TagModule } from "primeng/tag"
 
 import { AppRoutingModule } from "./app-routing.module"
 import { AppComponent } from "./app.component"
@@ -35,6 +37,7 @@ import { AprComponent, CoinComponent, WebsiteComponent } from "./components"
     BrowserModule,
     ButtonModule,
     CardModule,
+    CheckboxModule,
     ContextMenuModule,
     DialogModule,
     DividerModule,
@@ -46,6 +49,7 @@ import { AprComponent, CoinComponent, WebsiteComponent } from "./components"
     RippleModule,
     TableModule,
     TabViewModule,
+    TagModule,
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

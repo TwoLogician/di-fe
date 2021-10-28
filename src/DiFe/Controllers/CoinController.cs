@@ -22,8 +22,8 @@ namespace DiFe.Controllers
         {
             try
             {
-                var tokens = await _context.Coins.Where(x => x.Wallet.ToUpper() == wallet.ToUpper()).OrderBy(x => x.Name).ToListAsync();
-                return tokens;
+                var coins = await _context.Coins.Where(x => x.Wallet.ToUpper() == wallet.ToUpper()).OrderBy(x => x.Name).ToListAsync();
+                return coins;
             }
             catch (Exception ex)
             {
@@ -44,6 +44,7 @@ namespace DiFe.Controllers
                 {
                     Address = value.Address ?? string.Empty,
                     Countdown = value.Countdown ?? string.Empty,
+                    IsFarming = value.IsFarming,
                     Name = value.Name ?? string.Empty,
                     Wallet = value.Wallet ?? string.Empty,
                     Website = value.Website ?? string.Empty,
@@ -67,18 +68,19 @@ namespace DiFe.Controllers
                 {
                     return BadRequest();
                 }
-                var token = await _context.Coins.FirstOrDefaultAsync(x => x.Id == id);
-                if (token is null)
+                var coin = await _context.Coins.FirstOrDefaultAsync(x => x.Id == id);
+                if (coin is null)
                 {
-                    return BadRequest(new ExceptionInfo("That token doesn't exist."));
+                    return BadRequest(new ExceptionInfo("That coin doesn't exist."));
                 }
-                token.Address = value.Address ?? string.Empty;
-                token.Countdown = value.Countdown ?? string.Empty;
-                token.Name = value.Name ?? string.Empty;
-                token.Wallet = value.Wallet ?? string.Empty;
-                token.Website = value.Website ?? string.Empty;
+                coin.Address = value.Address ?? string.Empty;
+                coin.Countdown = value.Countdown ?? string.Empty;
+                coin.IsFarming = value.IsFarming;
+                coin.Name = value.Name ?? string.Empty;
+                coin.Wallet = value.Wallet ?? string.Empty;
+                coin.Website = value.Website ?? string.Empty;
                 await _context.SaveChangesAsync();
-                return token;
+                return coin;
             }
             catch (Exception ex)
             {

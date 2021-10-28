@@ -15,24 +15,26 @@
         </div>
         <p-dialog header="Info" [maximizable]="true" [(visible)]="display">
             <div class="animate__animated animate__fadeIn p-fluid">
-                <div class="p-field">
-                    <label>Website</label>
-                    <input [(ngModel)]="coin.website" [ngModelOptions]="ngModelOptions" type="text" pInputText>
-                </div>
-                <div class="p-field">
-                    <label>Name</label>
-                    <input [(ngModel)]="coin.name" [ngModelOptions]="ngModelOptions" type="text" pInputText>
-                </div>
-                <div class="p-field">
+                <div class="field">
                     <label>Address</label>
                     <input [(ngModel)]="coin.address" [ngModelOptions]="ngModelOptions" type="text" pInputText>
                 </div>
-                <div class="p-field">
+                <div class="field">
+                    <label>Website</label>
+                    <input [(ngModel)]="coin.website" [ngModelOptions]="ngModelOptions" type="text" pInputText>
+                </div>
+                <div class="field">
+                    <label>Name</label>
+                    <input [(ngModel)]="coin.name" [ngModelOptions]="ngModelOptions" type="text" pInputText>
+                </div>
+                <div class="field">
                     <label>Countdown</label>
                     <input [(ngModel)]="coin.countdown" [ngModelOptions]="ngModelOptions" type="text" pInputText>
                 </div>
-                <div class="p-field">
-                    <label>&nbsp;</label>
+                <div class="field">
+                    <p-checkbox [binary]="true" label="Farming" [(ngModel)]="coin.isFarming"></p-checkbox>
+                </div>
+                <div class="field">
                     <button (click)="save()" label="Save" pButton></button>
                 </div>
             </div>
@@ -44,6 +46,7 @@
             <th class="text-right">Balance</th>
             <th class="text-right">Price</th>
             <th class="text-right">Value</th>
+            <th></th>
             <th></th>
         </tr>
     </ng-template>
@@ -67,6 +70,10 @@
             <td class="text-right">
                 <span class="p-column-title">Value</span>
                 <span [class.text-green-500]="data.lastValue < data.value" [class.text-pink-500]="data.lastValue > data.value">${{data.valueString}}</span>
+            </td>
+            <td class="text-center">
+                <span class="p-column-title"></span>
+                <p-tag *ngIf="data.isFarming" severity="warning">Farm</p-tag>
             </td>
             <td class="text-right">
                 <span class="p-column-title"></span>

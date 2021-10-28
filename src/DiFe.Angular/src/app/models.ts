@@ -8,6 +8,7 @@ export class CoinInfo {
     dexGuruChart = ""
     id = ""
     imageUrl = ""
+    isFarming = false
     lastPrice = 0
     lastValue = 0
     name = ""
