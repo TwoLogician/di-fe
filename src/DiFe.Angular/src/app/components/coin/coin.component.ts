@@ -63,49 +63,32 @@ export class CoinComponent extends BaseComponent implements OnInit {
         this.bnbValue = this.toNumberString(bnbValue)
     }
 
-    async initBalances() {
-        let totalValue = 0
-        for (let c of this.coins) {
-            setTimeout(() => { }, 200)
-            try {
-                let rs = await this.service.bscscan.getTokenBalance(c.address)
-                c.balance = Number.parseFloat(rs.result) / 1000000000000000000
+    async initCoins() {
+        try {
+            let totalValue = 0
+            this.coins = await this.service.getCoins()
+            for (let c of this.coins) {
+                let balance = await this.service.bscscan.getTokenBalance(c.address)
+                let pancake = await this.service.pancake.getToken(c.address)
+                let data = pancake.data
+                let price = Number.parseFloat(data.price)
+                c.balance = Number.parseFloat(balance.result) / 1000000000000000000
                 c.balanceString = this.toNumberString(c.balance)
+                c.name = data.symbol || c.name
+                c.price = price
+                c.priceString = this.toNumberString(price)
                 c.value = c.balance * c.price || 0
                 c.valueString = this.toNumberString(c.value)
                 totalValue += c.value
-                this.totalValue = this.toNumberString(totalValue)
-            } catch (err) {
-                console.error(err)
+                setTimeout(() => { }, 200)
             }
-        }
-    }
-
-    async initCoins() {
-        try {
-            this.coins = await this.service.getCoins()
+            this.totalValue = this.toNumberString(totalValue)
         } catch (err) {
             this.error(err)
         }
     }
 
-    initPrices() {
-        this.coins.forEach(async x => {
-            try {
-                let rs = await this.service.pancake.getToken(x.address)
-                let data = rs.data
-                let price = Number.parseFloat(data.price)
-                x.name = data.symbol || x.name
-                x.price = price
-                x.priceString = this.toNumberString(price)
-            } catch (err) {
-                console.error(err)
-            }
-        })
-    }
-
     async ngOnInit() {
-        this.setProcessing(true)
         this.items = [
             { label: 'Add', icon: 'pi pi-fw pi-plus', command: () => this.add() },
             { label: 'Edit', icon: 'pi pi-fw pi-pencil', command: () => this.edit(this.selectedData) },
@@ -113,9 +96,6 @@ export class CoinComponent extends BaseComponent implements OnInit {
             { label: 'Delete', icon: 'pi pi-fw pi-trash', command: () => this.delete(this.selectedData) }
         ]
         await Promise.all([this.initBnb(), this.initCoins()])
-        this.initPrices()
-        this.setProcessing(false)
-        await this.initBalances()
         await this.saveCoins()
     }
 
