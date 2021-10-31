@@ -18,18 +18,21 @@ namespace DiFe.Models
         [NotMapped]
         public string ArkenChart => $"https://swap.arken.finance/tokens/bsc/{Address}";
         [NotMapped]
+        public string ArkenImageUrl => $"https://cdn.arken.finance/token/bsc/{Address.ToLower()}.png";
+        [NotMapped]
         public string BscScan => $"https://bscscan.com/address/{Address}";
         [NotMapped]
         public string DexGuruChart => $"https://dex.guru/token/{Address}";
         [NotMapped]
-        // public string ImageUrl => $"https://assets.trustwalletapp.com/blockchains/smartchain/assets/{Address}/logo.png";
-        public string ImageUrl => $"https://pancakeswap.finance/images/tokens/{Address}.svg";
-        [NotMapped]
         public string PancakeSwap => $"https://pancakeswap.finance/swap?outputCurrency={Address}";
+        [NotMapped]
+        public string PancakeSwapImageUrl => $"https://pancakeswap.finance/images/tokens/{Address}.svg";
         [NotMapped]
         public string PooCoinChart => $"https://poocoin.app/tokens/{Address}";
         [NotMapped]
         public decimal Price { get; set; }
+        // [NotMapped]
+        // public string TrustWalletImageUrl => $"https://assets.trustwalletapp.com/blockchains/smartchain/assets/{Address}/logo.png";
         [NotMapped]
         public decimal Value { get; set; }
     }
