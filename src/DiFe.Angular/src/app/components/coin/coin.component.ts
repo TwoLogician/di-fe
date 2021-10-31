@@ -66,6 +66,7 @@ export class CoinComponent extends BaseComponent implements OnInit {
     async initBalances() {
         let totalValue = 0
         for (let c of this.coins) {
+            setTimeout(() => { }, 200)
             try {
                 let rs = await this.service.bscscan.getTokenBalance(c.address)
                 c.balance = Number.parseFloat(rs.result) / 1000000000000000000
@@ -77,7 +78,6 @@ export class CoinComponent extends BaseComponent implements OnInit {
             } catch (err) {
                 console.error(err)
             }
-            setTimeout(() => { }, 200)
         }
     }
 
