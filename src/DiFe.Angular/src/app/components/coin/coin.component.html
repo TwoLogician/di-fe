@@ -55,7 +55,7 @@
             <td>
                 <span class="p-column-title">Asset</span>
                 <a [href]="data.website" target="_blank">
-                    <img class="mr-2" onError="this.src='https://image.flaticon.com/icons/svg/1828/1828934.svg'" [src]="data.imageUrl" style="border-radius: 100%; height: 32px;">
+                    <img class="mr-2" (error)="imgError($event, data.arkenImageUrl)" [src]="data.pancakeSwapImageUrl" style="border-radius: 100%; height: 32px;">
                     <button class="p-button-link" [label]="data.name" pButton></button>
                 </a>
             </td>

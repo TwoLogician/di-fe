@@ -1,18 +1,19 @@
 export class CoinInfo {
     address = ""
     arkenChart = ""
+    arkenImageUrl = ""
     balance = 0
     balanceString = ""
     bscScan = ""
     countdown = ""
     dexGuruChart = ""
     id = ""
-    imageUrl = ""
     isFarming = false
     lastPrice = 0
     lastValue = 0
     name = ""
     pancakeSwap = ""
+    pancakeSwapImageUrl = ""
     pooCoinChart = ""
     price = 0
     priceString = ""

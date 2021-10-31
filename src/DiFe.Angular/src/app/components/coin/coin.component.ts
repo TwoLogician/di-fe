@@ -49,6 +49,10 @@ export class CoinComponent extends BaseComponent implements OnInit {
         this.display = true
     }
 
+    imgError(e, src: string) {
+        e.target.src = src
+    }
+
     async initBnb() {
         let rs = await this.service.bscscan.getBalance()
         let bnb = Number.parseFloat(rs.result) / 1000000000000000000
