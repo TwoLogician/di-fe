@@ -84,10 +84,10 @@ export class CoinComponent extends BaseComponent implements OnInit {
                 }
             ]
             let totalValue = 0
+            let web3 = new Web3("https://bsc-dataseed.binance.org/")
             this.coins = await this.service.getCoins()
             for (let c of this.coins) {
                 try {
-                    let web3 = new Web3("https://bsc-dataseed.binance.org/")
                     let contract = new web3.eth.Contract(minABI, c.address)
                     let balance = await contract.methods.balanceOf(this.walletAddress).call()
                     let pancake = await this.service.pancake.getToken(c.address)
