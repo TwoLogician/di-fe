@@ -5,8 +5,6 @@ import { AppService } from "src/app/app.service"
 import { CoinInfo } from "src/app/models"
 import { BaseComponent } from "../base.component"
 
-declare let Web3: any
-
 @Component({
     selector: "coin",
     templateUrl: "./coin.component.html",
@@ -67,33 +65,15 @@ export class CoinComponent extends BaseComponent implements OnInit {
 
     async initCoins() {
         try {
-            let minABI = [
-                {
-                    "constant": true,
-                    "inputs": [{ "name": "_owner", "type": "address" }],
-                    "name": "balanceOf",
-                    "outputs": [{ "name": "balance", "type": "uint256" }],
-                    "type": "function"
-                },
-                {
-                    "constant": true,
-                    "inputs": [],
-                    "name": "decimals",
-                    "outputs": [{ "name": "", "type": "uint8" }],
-                    "type": "function"
-                }
-            ]
             let totalValue = 0
-            let web3 = new Web3("https://bsc-dataseed.binance.org/")
             this.coins = await this.service.getCoins()
             for (let c of this.coins) {
                 try {
-                    let contract = new web3.eth.Contract(minABI, c.address)
-                    let balance = await contract.methods.balanceOf(this.walletAddress).call()
+                    let balance = await this.service.bscscan.getTokenBalance(c.address)
                     let pancake = await this.service.pancake.getToken(c.address)
                     let data = pancake.data
                     let price = Number.parseFloat(data.price)
-                    c.balance = Number.parseFloat(balance) / 1000000000000000000
+                    c.balance = Number.parseFloat(balance.result) / 1000000000000000000
                     c.balanceString = this.toNumberString(c.balance)
                     c.name = data.symbol || c.name
                     c.price = price
@@ -101,6 +81,7 @@ export class CoinComponent extends BaseComponent implements OnInit {
                     c.value = c.balance * c.price || 0
                     c.valueString = this.toNumberString(c.value)
                     totalValue += c.value
+                    setTimeout(() => { }, 200)
                 } catch (err) {
                     c.balanceString = "0.0000"
                     c.priceString = "0.0000"
