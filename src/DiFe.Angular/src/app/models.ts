@@ -8,6 +8,7 @@ export class CoinInfo {
     countdown = ""
     dexGuruChart = ""
     id = ""
+    isChain = false
     isFarming = false
     lastPrice = 0
     lastValue = 0

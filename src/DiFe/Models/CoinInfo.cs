@@ -8,6 +8,7 @@ namespace DiFe.Models
         public string Address { get; set; } = string.Empty;
         public string Countdown { get; set; } = string.Empty;
         public string Id { get; set; } = Guid.NewGuid().ToString("N");
+        public bool IsChain { get; set; }
         public bool IsFarming { get; set; }
         public decimal LastPrice { get; set; }
         public decimal LastValue { get; set; }
@@ -31,8 +32,6 @@ namespace DiFe.Models
         public string PooCoinChart => $"https://poocoin.app/tokens/{Address}";
         [NotMapped]
         public decimal Price { get; set; }
-        // [NotMapped]
-        // public string TrustWalletImageUrl => $"https://assets.trustwalletapp.com/blockchains/smartchain/assets/{Address}/logo.png";
         [NotMapped]
         public decimal Value { get; set; }
     }
