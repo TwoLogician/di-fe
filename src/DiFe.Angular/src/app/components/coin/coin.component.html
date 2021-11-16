@@ -32,6 +32,9 @@
                     <input [(ngModel)]="coin.countdown" [ngModelOptions]="ngModelOptions" type="text" pInputText>
                 </div>
                 <div class="field">
+                    <p-checkbox [binary]="true" label="Chain" [(ngModel)]="coin.isChain"></p-checkbox>
+                </div>
+                <div class="field">
                     <p-checkbox [binary]="true" label="Farming" [(ngModel)]="coin.isFarming"></p-checkbox>
                 </div>
                 <div class="field">
@@ -73,6 +76,7 @@
             </td>
             <td class="text-center">
                 <span class="p-column-title"></span>
+                <p-tag *ngIf="data.isChain" severity="danger">Chain</p-tag>
                 <p-tag *ngIf="data.isFarming" severity="warning">Farm</p-tag>
             </td>
             <td class="text-right">

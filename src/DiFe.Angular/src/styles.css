@@ -29,7 +29,7 @@ body, html {
     z-index: 1;
 }
 
-.p-button, .p-card, .p-inputgroup, .p-inputtext {
+.p-button, .p-card, .p-checkbox .p-checkbox-box, .p-dialog, .p-inputgroup, .p-inputtext, .p-tag {
     border-radius: 0;
 }
 

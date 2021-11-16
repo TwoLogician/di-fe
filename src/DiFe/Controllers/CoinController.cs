@@ -44,6 +44,7 @@ namespace DiFe.Controllers
                 {
                     Address = value.Address ?? string.Empty,
                     Countdown = value.Countdown ?? string.Empty,
+                    IsChain = value.IsChain,
                     IsFarming = value.IsFarming,
                     Name = value.Name ?? string.Empty,
                     Wallet = value.Wallet ?? string.Empty,
@@ -75,6 +76,7 @@ namespace DiFe.Controllers
                 }
                 coin.Address = value.Address ?? string.Empty;
                 coin.Countdown = value.Countdown ?? string.Empty;
+                coin.IsChain = value.IsChain;
                 coin.IsFarming = value.IsFarming;
                 coin.Name = value.Name ?? string.Empty;
                 coin.Wallet = value.Wallet ?? string.Empty;
